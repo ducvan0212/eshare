@@ -14,3 +14,13 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+
+# ignore all emacs temp file
+*~
+solr/*
+db/schema.rb
+
+public/uploads/*
+config/database.yml
+dump.rdb
+.idea/*
