@@ -1,11 +1,14 @@
 Eshare::Application.routes.draw do
-  root to: 'static_pages#home'
+  root to: 'sessions#new'
   
   match '/about', to: 'static_pages#about'
   match '/help', to: 'static_pages#help'
 
   resources :users
-  match '/signup', to: 'users#new'   
+  match '/signup', to: 'users#new'
+
+  resources :sessions
+  match '/signout', to: 'sessions#destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
