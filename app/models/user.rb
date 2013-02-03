@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation, :avatar
   has_secure_password
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, 
+                             :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+                             :url => "/system/:attachment/:id/:style/:filename"
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token

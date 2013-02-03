@@ -17,7 +17,10 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
-
+      
+      <%= f.label :avatar %>
+      <%= f.file_field :avatar %>
+      
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
       <% end %>
       <div>Back to <%= link_to "Sign in", root_path %></div>
