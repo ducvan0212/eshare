@@ -1,3 +1,4 @@
 <%= provide(:title, @user.name) %>
 <%= image_tag @user.avatar.url(:thumb) %>
 <%= @user.name %>
+<%= link_to "Edit account infomation", edit_user_path(@user) %>
