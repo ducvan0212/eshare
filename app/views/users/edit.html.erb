@@ -19,11 +19,34 @@
         <%= f.password_field :password_confirmation %>
         
         <%= f.label :avatar %>
-        <%= f.file_field :avatar, :accept => 'image/png,image/jpeg' %>
-        <%= image_tag @user.avatar.url(:thumb) %>
+        <div class="avatar-area">
+          <div id="avatar-preview" style="background: url('<%= @user.avatar.url(:thumb)%>')">
+          </div>
+          <div id="upload-avatar-btn">
+            <div class="btn btn-large btn-primary">Chose a photo</div>
+            <%= f.file_field :avatar, :accept => 'image/png,image/jpeg', id: "upload-avatar-file-field", onchange: "readURL(this)" %>
+          </div>
+        </div>
 
-        <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+        <%= f.submit "Update", class: "btn btn-large btn-primary", id: "edit-user-sub-btn" %>
       <% end %>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#upload-avatar-btn .btn").click(function () {
+    $("#upload-avatar-file-field").click();
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        if ($('#avatar-preview'))
+          $('#avatar-preview').css({ 'background': 'url(' + e.target.result + ')' });
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
