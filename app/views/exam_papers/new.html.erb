@@ -1,0 +1,22 @@
+<%= provide(:title, "New exam paper") %>
+<div class="container">
+  <h1>New exam paper</h1>
+  <div class="row">
+    <div class="span6 offset3">
+      <%= form_for @exam_paper, html: {multipart: true} do |f| %>
+        <%= render partial: 'shared/error_messages', locals: {obj: @exam_paper} %>
+
+        <%= f.label :course_id %>
+        <%= f.select "course_id", Hash[Course.all.collect {|a| [a.name, a.id]}]%>
+
+        <%= f.label :lecturer_id %>
+        <%= f.select "lecturer_id", Hash[Lecturer.all.collect {|a| [a.name, a.id]}]%>
+
+        <%= f.label :exam_date %>
+        <input type="date" name="exam_paper[exam_date]" style="width: auto;"> 
+        
+        <%= f.submit "Upload", class: "btn btn-large btn-primary width100" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,9 @@ Eshare::Application.routes.draw do
 
   resources :sessions
   match '/signout', to: 'sessions#destroy'
+
+  resources :exam_papers
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
