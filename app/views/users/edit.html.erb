@@ -3,7 +3,7 @@
   <h1>Edit account information</h1>
   <div class="row">
     <div class="span6 offset3">
-      <%= form_for @user do |f| %>
+      <%= form_for @user, html: {multipart: true} do |f| %>
         <%= render 'shared/error_messages' %>
 
         <%= f.label :name %>
@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <%= f.submit "Update", class: "btn btn-large btn-primary", id: "edit-user-sub-btn" %>
+        <%= f.submit "Update", class: "btn btn-large btn-primary width100", id: "edit-user-sub-btn" %>
       <% end %>
     </div>
   </div>

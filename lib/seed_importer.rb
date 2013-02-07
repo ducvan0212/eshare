@@ -12,8 +12,13 @@ class SeedImporter
 
   def import_yml_seed( file )
     init_model( file, '.yml' )
+    if @model.to_s == "Lecturer"
+      extractor = "lecturer_extractor"
+    elsif @model.to_s == "Course"
+      extractor = "course_extractor"
+    end
     YAML.load_file( file ).each { |seed|
-      processed_data = process_data("lecturer_extracter", seed)
+      processed_data = process_data(extractor, seed)
       create_and_save(processed_data)
     }
   end
@@ -30,11 +35,15 @@ class SeedImporter
     @model.create!( data )
   end
 
-  def process_data(extracter, raw_data)
-    send(extracter, raw_data)
+  def process_data(extractor, raw_data)
+    send(extractor, raw_data)
   end
 
-  def lecturer_extracter(raw_data)
+  def lecturer_extractor(raw_data)
+    {name: raw_data[1]}
+  end
+
+  def course_extractor(raw_data)
     {name: raw_data[1]}
   end
 end
