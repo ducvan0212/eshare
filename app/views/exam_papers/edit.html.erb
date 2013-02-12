@@ -1,2 +1,27 @@
-<h1>ExamPapers#edit</h1>
-<p>Find me in app/views/exam_papers/edit.html.erb</p>
+<%= provide(:title, "Edit exam paper") %>
+<div class="container">
+  <h1>Edit exam paper</h1>
+  <div class="row">
+    <div class="span6 offset3">
+      <%= form_for @exam_paper, html: {multipart: true} do |f| %>
+        <%= render partial: 'shared/error_messages', locals: {obj: @exam_paper} %>
+
+        <%= f.label :course_id %>
+        <%= f.select "course_id", Hash[Course.all.collect {|a| [a.name, a.id]}]%>
+
+        <%= f.label :lecturer_id %>
+        <%= f.select "lecturer_id", Hash[Lecturer.all.collect {|a| [a.name, a.id]}]%>
+
+        <%= f.label :exam_date %>
+        <input type="date" name="exam_paper[exam_date]" style="width: auto;" value="<%= @exam_paper.exam_date %>"> 
+        
+        <%= f.fields_for :parts, html: {multipart: true} do |builder| %>
+          <%= image_tag builder.object.exam_part.url(:thumb) %>
+          <%= render "parts_fields", :f => builder %>
+        <% end %>
+
+        <%= f.submit "Upload", class: "btn btn-large btn-primary width100" %>
+      <% end %>
+    </div>
+  </div>
+</div>

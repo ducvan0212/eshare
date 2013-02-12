@@ -1,6 +1,9 @@
 class ExamPapersController < ApplicationController
   def new
     @exam_paper = ExamPaper.new
+    3.times do
+      parts = @exam_paper.parts.build
+    end
   end
 
   def create
@@ -13,13 +16,20 @@ class ExamPapersController < ApplicationController
   end
 
   def edit
+    @exam_paper = ExamPaper.find(params[:id])
   end
 
   def update
+    @exam_paper = ExamPaper.find(params[:id])
+    if @exam_paper.update_attributes(params[:exam_paper]) 
+      redirect_to @exam_paper
+    else
+      render 'new'
+    end
   end
 
   def show
-    @exam_paper = ExamPaper.find(params[:id])  
+    @exam_paper = ExamPaper.find(params[:id])
   end
 
   def destroy

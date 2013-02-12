@@ -15,6 +15,10 @@
         <%= f.label :exam_date %>
         <input type="date" name="exam_paper[exam_date]" style="width: auto;"> 
         
+        <%= f.fields_for :parts, html: {multipart: true} do |builder| %>
+          <%= render "parts_fields", :f => builder %>
+        <% end %>
+
         <%= f.submit "Upload", class: "btn btn-large btn-primary width100" %>
       <% end %>
     </div>
