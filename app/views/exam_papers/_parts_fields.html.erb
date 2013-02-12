@@ -1,5 +1,7 @@
-<p>
-  <%= f.file_field :exam_part %><br />
-  <%= f.check_box :_destroy %>
-  <%= f.label :_destroy, "Remove" %>
-</p>
+<div class="fields">
+  <p>
+    <%= image_tag f.object.exam_part.url(:thumb) %>
+    <%= f.file_field :exam_part %><br />
+    <%= link_to_remove_field("remove", f) %>
+    </p>
+</div>

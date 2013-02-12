@@ -14,6 +14,10 @@
 
         <%= f.label :exam_date %>
         <input type="date" name="exam_paper[exam_date]" style="width: auto;"> 
+        <p class="date-recommendation">* It is optional but we recommend you filling this field to keep track of how new the exam paper is. The day is not necessary so you can just choose the right month.<p/>
+
+        <%= f.label :content %>
+        <%= f.text_area :content %>
         
         <%= f.fields_for :parts, html: {multipart: true} do |builder| %>
           <%= render "parts_fields", :f => builder %>

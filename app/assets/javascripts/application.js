@@ -13,3 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+function remove_field(link) {
+  console.log(link);
+  $(link).prev().val("true");
+  $(link).parents(".fields").hide();
+}
