@@ -12,19 +12,30 @@
         <%= f.label :lecturer_id %>
         <%= f.select "lecturer_id", Hash[Lecturer.all.collect {|a| [a.name, a.id]}]%>
 
-        <%= f.label :exam_date %>
+        <%= f.label :exam_date , "Exam date"%>
         <input type="date" name="exam_paper[exam_date]" style="width: auto;" value="<%= @exam_paper.exam_date %>"> 
-        <p class="date-recommendation">* It is optional but we recommend you filling exam date to keep track of how new the exam paper is. The day is not necessary so you can just choose the right month.<p/>
+        <p class="date-recommendation">The day is not necessary so you can just choose the right month.</p>
         
-        <%= f.label :content %>
+        <%= f.label :content, "Content" %>
         <%= f.text_area :content %>
 
-        <%= f.fields_for :parts, html: {multipart: true} do |builder| %>
-          <%= render "parts_fields", :f => builder %>
-        <% end %>
+        <div id="upload-file-area">
+          <%= f.fields_for :parts, html: {multipart: true} do |builder| %>
+            <%= render "parts_fields", :f => builder %>
+          <% end %>
+        </div>
+        <div id="add-more-file" class="btn btn-large btn-primary">Add more
+        </div>
 
         <%= f.submit "Upload", class: "btn btn-large btn-primary width100" %>
       <% end %>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#add-more-file').click(function () {
+    var num_fields = $('.fields').length;
+    $('#upload-file-area').append('<div class="fields"><p><input id="exam_paper_parts_attributes_'+num_fields+'_exam_part" name="exam_paper[parts_attributes]['+num_fields+'][exam_part]" type="file"><br><input id="exam_paper_parts_attributes_'+num_fields+'__destroy" name="exam_paper[parts_attributes]['+num_fields+'][_destroy]" type="hidden" value="false"><a href="#" onclick="remove_field(this); return false;">remove</a></p></div>');
+  });
+</script>

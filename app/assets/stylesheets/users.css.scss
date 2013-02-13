@@ -23,19 +23,6 @@ input {
 
 .avatar-area {
   height: 140px;
-  #avatar-preview {
-    width: 100px;
-    height: 100px;
-    background-repeat: no-repeat !important;
-    background-size: contain !important;
-    background-position: 50% 50% !important;
-    display: inline-block;
-    float: left;
-    margin-right: 40px;
-    margin-left: 30px;
-    border: solid 2px #ACACAC;
-    border-radius: 5px;
-  }
   #upload-avatar-file-field {
     display: none;
   }
@@ -49,4 +36,18 @@ input {
 
 .width100 {
   width: 100% !important;
+}
+
+.preview {
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: 50% 50% !important;
+  display: inline-block;
+  float: left;
+  margin-right: 40px;
+  margin-left: 30px;
+  border: solid 2px #ACACAC;
+  border-radius: 5px;
 }

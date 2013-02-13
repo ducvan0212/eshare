@@ -20,7 +20,7 @@
         
         <%= f.label :avatar %>
         <div class="avatar-area">
-          <div id="avatar-preview" style="background: url('<%= @user.avatar.url(:thumb)%>')">
+          <div class="preview" style="background: url('<%= @user.avatar.url(:thumb)%>')">
           </div>
           <div id="upload-avatar-btn">
             <div class="btn btn-large btn-primary">Chose a photo</div>
@@ -44,8 +44,8 @@
     if (input.files && input.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
-        if ($('#avatar-preview'))
-          $('#avatar-preview').css({ 'background': 'url(' + e.target.result + ')' });
+        if ($('.preview'))
+          $('.preview').css({ 'background': 'url(' + e.target.result + ')' });
       };
       reader.readAsDataURL(input.files[0]);
     }
