@@ -1,4 +1,6 @@
 class ExamPapersController < ApplicationController
+  before_filter :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :correct_user, only: [:edit, :update, :destroy]
   def new
     @exam_paper = ExamPaper.new
     3.times do
@@ -34,4 +36,10 @@ class ExamPapersController < ApplicationController
 
   def destroy
   end
+
+  private
+    def correct_user
+      @exam_paper = current_user.exam_papers.find_by_id(params[:id])
+      redirect_to root_path if @exam_paper.nil?
+    end
 end
