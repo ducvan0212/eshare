@@ -11,4 +11,16 @@ class ExamPaper < ActiveRecord::Base
   validates :content, presence: true
   validates :lecturer_id, presence: true
   validates :course_id, presence: true
+
+  def self.search(lecturer, course)
+    if(lecturer != -1 && course != -1)
+      where("lecturer_id = ? AND course_id = ?", lecturer, course)
+    elsif lecturer != -1 
+      where("lecturer_id = ?", lecturer)
+    elsif course != -1
+      where("course_id = ?", course)
+    else
+      ExamPaper.all
+    end    
+  end
 end

@@ -1,3 +1,5 @@
+<%= provide(:title, "Exam paper") %>
+<div class="container">
 Date: <%= @exam_paper.exam_date.month.to_s + "-" + @exam_paper.exam_date.year.to_s if !@exam_paper.exam_date.nil? %><br \>
 Course: <%= @exam_paper.course_id %><br \>
 Lecturer: <%= @exam_paper.lecturer_id %><br \>
@@ -12,3 +14,4 @@ Attach files:
 <% if current_user == @exam_paper.user %>
   <%= link_to "Edit this exam paper", edit_exam_paper_path %>
 <% end %>
+</div>

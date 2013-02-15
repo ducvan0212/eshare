@@ -37,6 +37,12 @@ class ExamPapersController < ApplicationController
   def destroy
   end
 
+  def search
+    lecturer = params[:lecturer].empty? ? -1 : params[:lecturer].to_i
+    course = params[:course].empty? ? -1 : params[:course].to_i
+    @results = ExamPaper.search(lecturer, course)
+  end
+
   private
     def correct_user
       @exam_paper = current_user.exam_papers.find_by_id(params[:id])
