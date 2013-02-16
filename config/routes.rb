@@ -1,13 +1,12 @@
 Eshare::Application.routes.draw do
   get "search/search"
 
-  root to: 'sessions#new'
+  root to: 'static_pages#home'
   
   match '/about', to: 'static_pages#about'
   match '/help', to: 'static_pages#help'
 
   resources :users
-  match '/signup', to: 'users#new'
 
   resources :sessions, only: [:new, :create]
   match '/signout', to: 'sessions#destroy'

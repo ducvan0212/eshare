@@ -1,14 +1,27 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <ul class="nav pull-right">
+      <ul class="nav pull-left">    
+        <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
         <li><%= link_to "About us", about_path %></li>
-        <li><%= link_to "Home", root_path %></li>
+        <!-- logo thay cho nut home -->
+      </ul>
+      <ul class="nav pull-right">
         <% if signed_in? %>
           <li><%= link_to "Profile", user_path(current_user) %></li>
           <li><%= link_to "Contribute", new_exam_paper_path %></li>
           <li><%= link_to "Sign out", signout_path %></li>
+        <% else %>
+          <li>
+            <%= form_for :session, url: sessions_path, html: {class: "navbar-form pull-left"} do |f| %>
+            <%= f.text_field :email, placeholder: "Email", class: "span2" %>
+
+            <%= f.password_field :password, placeholder: "Password" ,class: "span2" %>
+
+            <%= f.submit "Sign in", class: "btn" %>
+            <% end %>
+          </li>
         <% end %>
       </ul>
     </div>
