@@ -7,8 +7,10 @@ Eshare::Application.routes.draw do
   match '/help', to: 'static_pages#help'
 
   resources :users
+  match '/signup', to: 'users#new'
 
   resources :sessions, only: [:new, :create]
+  match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy'
 
   resources :exam_papers

@@ -1,6 +1,7 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
+    # create users
     User.create!(name: "ndvan",
                  email: "van@gmail.com",
                  password: "123456",
@@ -13,6 +14,12 @@ namespace :db do
                    email: email,
                    password: password,
                    password_confirmation: password)
+    end
+
+    # create exam papers
+    3.times do |n|
+      ep = User.first.exam_papers.build(course_id: n+1, lecturer_id: n+1, exam_date: "10-4-2013", content: "asfd")
+      ep.save!
     end
   end
 end

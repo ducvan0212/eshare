@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:edit, :update]
   before_filter :correct_user,   only: [:edit, :update]
 
+  def new
+    @user = User.new
+  end
+
   def create
     @user = User.new(params[:user]);
     if @user.save
