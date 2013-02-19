@@ -38,9 +38,11 @@ class ExamPapersController < ApplicationController
   end
 
   def search
-    lecturer = params[:lecturer].empty? ? -1 : params[:lecturer].to_i
-    course = params[:course].empty? ? -1 : params[:course].to_i
-    @results = ExamPaper.search(lecturer, course).paginate(:page => params[:page], :per_page => 10)
+    if !params[:lecturer].nil? && !params[:course].nil?
+      lecturer = params[:lecturer].empty? ? -1 : params[:lecturer].to_i
+      course = params[:course].empty? ? -1 : params[:course].to_i
+      @results = ExamPaper.search(lecturer, course).paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
   private

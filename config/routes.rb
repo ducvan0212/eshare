@@ -1,5 +1,4 @@
 Eshare::Application.routes.draw do
-  get "search/search"
 
   root to: 'static_pages#home'
   
