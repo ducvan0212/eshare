@@ -17,8 +17,15 @@ namespace :db do
     end
 
     # create exam papers
-    3.times do |n|
-      ep = User.first.exam_papers.build(course_id: n+1, lecturer_id: n+1, exam_date: "10-4-2013", content: "asfd")
+    User.all.each do |user|
+      3.times do |n|
+        ep = user.exam_papers.build(lecturer_id: n+1, course_id: n+1, exam_date: "10-4-2013", content: "asfd")
+        ep.save!
+      end
+    end
+
+    2.times do |n|
+      ep = User.first.exam_papers.build(lecturer_id: n+1, course_id: n+2, exam_date: "10-4-2013", content: "asfd")
       ep.save!
     end
   end
