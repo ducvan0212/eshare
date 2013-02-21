@@ -20,8 +20,13 @@
         
         <%= f.label :avatar %>
         <div class="avatar-area">
-          <div class="preview" style="background: url('<%= @user.avatar.url(:thumb)%>')">
-          </div>
+          <% if !@user.avatar.nil? %>
+            <div class="preview" style="background: url('/assets/default_avatar.png')">
+            </div>
+          <% else %>
+            <div class="preview" style="background: url('<%= @user.avatar.url(:thumb)%>')">
+            </div>
+          <% end %>
           <div id="upload-avatar-btn">
             <div class="btn btn-large btn-primary">Chose a photo</div>
             <%= f.file_field :avatar, :accept => 'image/png,image/jpeg', id: "upload-avatar-file-field", onchange: "readURL(this)" %>

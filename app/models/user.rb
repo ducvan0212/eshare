@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
                              :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
                              :url => "/system/:attachment/:id/:style/:filename"
   has_many :exam_papers, dependent: :destroy
+  has_many :appreciates, dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -19,6 +20,17 @@ class User < ActiveRecord::Base
   validates_attachment :avatar, :content_type => { :content_type => ['image/jpeg', 'image/png'] },
                                 :size => { :in => 0..1.megabytes }
 
+  def appreciate!(exam_paper)
+    appreciates.create!(exam_paper_id: exam_paper.id)
+  end
+
+  def appreciated?(exam_paper)
+    appreciates.find_by_exam_paper_id(exam_paper.id)
+  end
+
+  def rm_appreciate!(exam_paper)
+    appreciates.find_by_exam_paper_id(exam_paper.id).destroy
+  end
   private
 
   def create_remember_token
