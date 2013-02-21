@@ -7,7 +7,17 @@
 <% end %>
 
 <%= @user.name %>
-
 <% if current_user == @user %>
   <%= link_to "Edit account infomation", edit_user_path(@user) %>
 <% end %>
+
+<div>
+  <%= pluralize(@exam_papers.count, "item") %><br>
+  <% if !@exam_papers.nil? %>
+    <% @exam_papers.each do |e| %>
+      <%= e.course.name %> | <%= e.lecturer.name %> | <%= link_to "Go to", exam_paper_path(e) %>
+      <br>
+    <% end %>
+  <% end %>
+</div>
+
