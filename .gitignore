@@ -15,8 +15,9 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 
-# ignore all emacs temp file
+# ignore all temp files
 *~
+*.swp
 solr/*
 db/schema.rb
 
