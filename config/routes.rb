@@ -1,9 +1,5 @@
 Eshare::Application.routes.draw do
 
-  get "appreciates/create"
-
-  get "appreciates/destroy"
-
   root to: 'static_pages#home'
   
   match '/about', to: 'static_pages#about'
@@ -20,7 +16,8 @@ Eshare::Application.routes.draw do
   match '/exam_papers_search', to: 'exam_papers#search'
 
   resources :appreciates, only: [:create, :destroy]
-  
+  resources :reports, only: [:create, :destroy]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
                              :url => "/system/:attachment/:id/:style/:filename"
   has_many :exam_papers, dependent: :destroy
   has_many :appreciates, dependent: :destroy
-
+  has_many :reports, dependent: :destroy
+  
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
@@ -30,6 +31,18 @@ class User < ActiveRecord::Base
 
   def rm_appreciate!(exam_paper)
     appreciates.find_by_exam_paper_id(exam_paper.id).destroy
+  end
+
+  def report!(exam_paper)
+    reports.create!(exam_paper_id: exam_paper.id)
+  end
+
+  def reported?(exam_paper)
+    reports.find_by_exam_paper_id(exam_paper.id)
+  end
+
+  def rm_report!(exam_paper)
+    reports.find_by_exam_paper_id(exam_paper.id).destroy
   end
   private
 

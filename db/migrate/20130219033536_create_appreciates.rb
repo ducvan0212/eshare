@@ -6,5 +6,8 @@ class CreateAppreciates < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :appreciates, :user_id
+    add_index :appreciates, :exam_paper_id
+    add_index :appreciates, [:user_id, :exam_paper_id], unique: true
   end
 end
