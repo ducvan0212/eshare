@@ -1,0 +1,5 @@
+<% if !@exam_paper.comments.nil? %>
+  <% @exam_paper.comments.each do |c| %>
+    <%= render partial: "comments/comment", locals: {comment: c} %>
+  <% end %>
+<% end %>

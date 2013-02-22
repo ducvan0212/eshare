@@ -1,0 +1,8 @@
+<%= comment.user.name %>
+<%= simple_format(comment.content) %>
+
+<% if current_user == comment.user %>
+  <%= form_for comment, html: { method: :delete }, remote: true do |f| %>
+  <%= f.submit "Delete comment", class: "btn btn-large btn-primary" %>
+  <% end %>
+<% end %>

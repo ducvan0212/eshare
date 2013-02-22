@@ -1,4 +1,6 @@
 class ReportsController < ApplicationController
+  before_filter :signed_in_user
+
   def create
     @exam_paper = ExamPaper.find(params[:report][:exam_paper_id])
     current_user.report!(@exam_paper)

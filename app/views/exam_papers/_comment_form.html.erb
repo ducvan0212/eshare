@@ -1,0 +1,5 @@
+<%= form_for current_user.comments.build(exam_paper_id: @exam_paper.id), remote: true do |f| %>
+<%= f.hidden_field :exam_paper_id %>
+<%= f.text_field :content %>
+<%= f.submit "Comment", class: "btn btn-large btn-primary" %>
+<% end %>

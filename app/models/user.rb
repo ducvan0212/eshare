@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   has_many :exam_papers, dependent: :destroy
   has_many :appreciates, dependent: :destroy
   has_many :reports, dependent: :destroy
-  
+  has_many :comments, dependent: :destroy
+
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
@@ -43,6 +44,14 @@ class User < ActiveRecord::Base
 
   def rm_report!(exam_paper)
     reports.find_by_exam_paper_id(exam_paper.id).destroy
+  end
+
+  def comment!(exam_paper, content)
+    comments.create!(exam_paper_id: exam_paper.id, content: content)
+  end
+
+  def rm_comment!(exam_paper, comment_id)
+    comments.where("exam_paper_id = ?", exam_paper.id).select{|c| c.id == comment_id.to_i}.first.destroy
   end
   private
 

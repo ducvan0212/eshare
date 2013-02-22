@@ -1,4 +1,6 @@
 class AppreciatesController < ApplicationController
+  before_filter :signed_in_user
+    
   def create
     @exam_paper = ExamPaper.find(params[:appreciate][:exam_paper_id])
     current_user.appreciate!(@exam_paper)
