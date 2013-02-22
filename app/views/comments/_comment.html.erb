@@ -1,8 +1,11 @@
-<%= comment.user.name %>
-<%= simple_format(comment.content) %>
+<div style="border-top: 2px black solid;">
+  <%= comment.user.name %>
+  <%= simple_format(comment.content) %>
+  Posted <%= time_ago_in_words(comment.created_at) %> ago.
 
-<% if current_user == comment.user %>
-  <%= form_for comment, html: { method: :delete }, remote: true do |f| %>
-  <%= f.submit "Delete comment", class: "btn btn-large btn-primary" %>
+  <% if current_user == comment.user %>
+    <%= form_for comment, html: { method: :delete }, remote: true do |f| %>
+    <%= f.submit "Delete comment", class: "btn btn-large btn-primary" %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
