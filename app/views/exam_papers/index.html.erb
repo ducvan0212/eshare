@@ -1,0 +1,33 @@
+<% provide(:title, 'All exam papers') %>
+<div class="container">
+<h1>Exam Papers</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Lecturer</th>
+        <th>Course</th>
+        <th>Date</th>
+        <th>Appreciates</th>
+        <th>Report</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% if !@exam_papers.nil? %>
+      <tbody>
+        <% @exam_papers.each do |e| %>
+          <tr>
+            <td><%= e.lecturer.name %></td>
+            <td><%= e.course.name %></td>
+            <td><%= e.exam_date.month.to_s + "-" + e.exam_date.year.to_s %></td>
+            <td><%= e.appreciates.count %></td>
+            <td><%= e.reports.count %></td>
+            <td><%= link_to "delete", e, method: :delete,
+                                            data: { confirm: "You sure?" } %></td>
+          </tr>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>
+  <%= will_paginate @exam_papers, class: "pagination pagination-centered" %>
+</div>

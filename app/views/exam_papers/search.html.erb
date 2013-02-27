@@ -13,7 +13,7 @@
       <%= r.exam_date %> |
       <%= link_to "Browse", exam_paper_path(r) %></br>
     <% end %>
-    <%= will_paginate @results %>
+    <%= will_paginate @results, class: "pagination pagination-centered" %>
   <% else %>
     <p>No exam paper found.</p>
   <% end %>

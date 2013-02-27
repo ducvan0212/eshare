@@ -1,6 +1,7 @@
 class ExamPapersController < ApplicationController
   before_filter :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
   before_filter :correct_user, only: [:edit, :update, :destroy]
+  before_filter :admin_user, only: [:index, :destroy]
   def new
     @exam_paper = ExamPaper.new
     3.times do
@@ -35,6 +36,12 @@ class ExamPapersController < ApplicationController
   end
 
   def destroy
+    ExamPaper.find(params[:id]).destroy
+    redirect_to exam_papers_path
+  end
+
+  def index
+    @exam_papers = ExamPaper.all.paginate(page: params[:page], per_page: 10)  
   end
 
   def search
@@ -49,5 +56,9 @@ class ExamPapersController < ApplicationController
     def correct_user
       @exam_paper = current_user.exam_papers.find_by_id(params[:id])
       redirect_to root_path if @exam_paper.nil?
+    end
+
+    def admin_user
+      redirect_to root_path if !current_user.admin?
     end
 end
