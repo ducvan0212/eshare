@@ -1,6 +1,6 @@
 <% provide(:title, 'All exam papers') %>
 <div class="container">
-<h1>Exam Papers</h1>
+  <h1>Exam Papers</h1>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -9,6 +9,7 @@
         <th>Date</th>
         <th>Appreciates</th>
         <th>Report</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -21,9 +22,9 @@
             <td><%= e.exam_date.month.to_s + "-" + e.exam_date.year.to_s %></td>
             <td><%= e.appreciates.count %></td>
             <td><%= e.reports.count %></td>
+            <td><%= link_to "browse", e %></td>                   
             <td><%= link_to "delete", e, method: :delete,
                                             data: { confirm: "You sure?" } %></td>
-          </tr>
           </tr>
         <% end %>
       </tbody>

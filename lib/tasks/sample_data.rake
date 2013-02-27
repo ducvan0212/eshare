@@ -8,7 +8,7 @@ namespace :db do
                  password_confirmation: "123456")
     admin.toggle!(:admin)
     
-    3.times do |n|
+    20.times do |n|
       name  = Faker::Name.name + " " + "#{n+1}"
       email = "#{n+1}@mail.com"
       password  = "123456"
@@ -26,7 +26,7 @@ namespace :db do
       end
     end
 
-    2.times do |n|
+    3.times do |n|
       ep = User.first.exam_papers.build(lecturer_id: n+1, course_id: n+2, exam_date: "10-4-2013", content: "asfd")
       ep.save!
     end

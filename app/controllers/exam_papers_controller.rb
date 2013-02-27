@@ -1,5 +1,5 @@
 class ExamPapersController < ApplicationController
-  before_filter :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :signed_in_user, only: [:new, :create, :edit, :update, :destroy, :index]
   before_filter :correct_user, only: [:edit, :update, :destroy]
   before_filter :admin_user, only: [:index, :destroy]
   def new
@@ -54,7 +54,11 @@ class ExamPapersController < ApplicationController
 
   private
     def correct_user
-      @exam_paper = current_user.exam_papers.find_by_id(params[:id])
+      if current_user.admin?
+        @exam_paper = ExamPaper.find(params[:id])
+      else
+        @exam_paper = current_user.exam_papers.find_by_id(params[:id])
+      end
       redirect_to root_path if @exam_paper.nil?
     end
 
