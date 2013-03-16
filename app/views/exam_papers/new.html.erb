@@ -1,8 +1,7 @@
 <%= provide(:title, "New exam paper") %>
 <div class="container">
   <h1>New exam paper</h1>
-  <div class="row">
-    <div class="span6 offset3">
+	<div class="leftpane">
       <%= form_for @exam_paper, html: {multipart: true} do |f| %>
         <%= render partial: 'shared/error_messages', locals: {obj: @exam_paper} %>
 
@@ -15,7 +14,9 @@
         <%= f.label :exam_date, "Exam date" %>
         <input type="date" name="exam_paper[exam_date]" style="width: auto;"  value="<%= @exam_paper.exam_date %>"> 
         <p class="date-recommendation">The day is not necessary so you can just choose the right month.<p/>
-
+	</div>
+	
+	<div class="content">
         <%= f.label :content, "Content" %>
         <%= f.text_area :content %>
         

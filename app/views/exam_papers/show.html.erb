@@ -1,54 +1,64 @@
 <%= provide(:title, "Exam paper") %>
 <div class="container">
-Date: <%= @exam_paper.exam_date.month.to_s + "-" + @exam_paper.exam_date.year.to_s %><br \>
-Course: <%= @exam_paper.course_id %><br \>
-Lecturer: <%= @exam_paper.lecturer_id %><br \>
-Content: <%= @exam_paper.content %><br \>
+	<div class="leftpane">
+		Date: <%= @exam_paper.exam_date.month.to_s + "-" + @exam_paper.exam_date.year.to_s %><br \>
+		Course: <%= @exam_paper.course_id %><br \>
+		Lecturer: <%= @exam_paper.lecturer_id %><br \>
+		Content: <%= @exam_paper.content %><br \>
 
-Attach files: 
-<% @exam_paper.parts.each do |p| %>
-  <%= image_tag p.exam_part.url(:thumb) %>
-<% end %>
-<br \>
+		Attach files: 
+		<% @exam_paper.parts.each do |p| %>
+		  <%= image_tag p.exam_part.url(:thumb) %>
+		<% end %>
+		<br \>
+		
+		<div class="statistic">
+		  Appreciate: 
+		  <span id="appreciate">
+		    <%= @exam_paper.appreciates.count %>
+		  </span>
+		  <br>
+		  Report:
+		  <span id="report">
+		    <%= @exam_paper.reports.count %>
+		  </span>
+		</div>
 
-<div class="statistic">
-  Appreciate: 
-  <span id="appreciate">
-    <%= @exam_paper.appreciates.count %>
-  </span>
-  <br>
-  Report:
-  <span id="report">
-    <%= @exam_paper.reports.count %>
-  </span>
-</div>
-
-<% if current_user == @exam_paper.user %>
-  <%= link_to "Edit this exam paper", edit_exam_paper_path %>
-<% end %>
-
-<% if signed_in? %>
-  <div id="appreciate_form">
-    <% if !current_user.appreciated?(@exam_paper) %>
-      <%= render "appreciate" %>
-    <% else %>
-      <%= render "remove_appreciate" %>
-    <% end %>
-  </div>
-  <div id="report_form">
-    <% if !current_user.reported?(@exam_paper) %>
-      <%= render "report" %>
-    <% else %>
-      <%= render "remove_report" %>
-    <% end %>
-  </div>
-  <div id="comment_area">
-    <div id="comments">
-      <%= render "comments/comments" %>
-    </div>
-    <div id="comment_form">
-      <%= render "comment_form" %>
-    </div>
-  </div>
-<% end %>
+		<% if current_user == @exam_paper.user %>
+		  <%= link_to "Edit this exam paper", edit_exam_paper_path %>
+		<% end %>
+	</div>
+	
+	<div class="content">
+		Lorem ipsum dolor sit amet
+	</div>
+	
+	<div class="rightpane">
+		<% if signed_in? %>
+		  <div id="appreciate_form">
+		    <% if !current_user.appreciated?(@exam_paper) %>
+		      <%= render "appreciate" %>
+		    <% else %>
+		      <%= render "remove_appreciate" %>
+		    <% end %>
+		  </div>
+		  <div id="report_form">
+		    <% if !current_user.reported?(@exam_paper) %>
+		      <%= render "report" %>
+		    <% else %>
+		      <%= render "remove_report" %>
+		    <% end %>
+		  </div>
+		  
+		  <div id="comment_area">
+		    <div id="comments">
+		      <%= render "comments/comments" %>
+		    </div>
+		    <div id="comment_form">
+		      <%= render "comment_form" %>
+		    </div>
+		  </div>
+		<% end %>
+	</div>
+	
 </div>
