@@ -1,5 +1,10 @@
-<% if !@exam_paper.comments.nil? %>
-  <% @exam_paper.comments.each do |c| %>
+<% if !@comments.nil? %>
+  <% @comments.each do |c| %>
     <%= render partial: "comments/comment", locals: {comment: c} %>
   <% end %>
+  <%= will_paginate @comments %>
 <% end %>
+
+<script type="text/javascript">
+  $(".pagination a").attr('data-remote', 'true');
+</script>

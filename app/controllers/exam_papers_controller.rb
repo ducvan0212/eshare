@@ -33,10 +33,10 @@ class ExamPapersController < ApplicationController
 
   def show
     @exam_paper = ExamPaper.find(params[:id])
+    @comments = @exam_paper.comments.paginate(page: params[:page], per_page: 3)
   end
 
   def destroy
-    binding.pry
     ExamPaper.find(params[:id]).destroy
     redirect_to exam_papers_path
   end

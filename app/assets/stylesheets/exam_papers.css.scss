@@ -13,12 +13,17 @@ select {
 .ex-p-content {
   display: inline-block;
   width: 100%;
+  .ex-p-content-top {
+    background: #EDEFF4;
+  }
 }
 
 .container1100 {
+  width: 1100px;
+  margin: 0 auto;
   .ex-p-info {
     margin-bottom: 30px;
-    border-bottom: 2px gray solid;
+    background: #EDEFF4;
     display: inline-block;
     width: 100%;
     .ex-p-info-right {
@@ -40,10 +45,26 @@ select {
       float: left;
     }
   }
-  width: 1100px;
-  margin: 0 auto;
 }
 
 .left-part {
+}
 
+.a-comment {
+  background: #EDEFF4;
+  width: 100%;
+  .avatar-in-comment {
+    width: 40px !important;
+    height: 40px !important;
+    margin: 5px !important;
+  }
+  .comment-content {
+    width: 290px;
+    float: right;
+    word-wrap: break-word;
+    #owner {
+      font-size: 110%;
+      font-weight: bold;
+    }
+  }
 }

@@ -37,8 +37,8 @@
 				</div>
 			</div>
 			
-			<div class="">
-				<div class="ex-p-content">
+			<div class="ex-p-content">
+				<div class="ex-p-content-top">
 					<%= simple_format h(@exam_paper.content) %>
 				</div>
 				Attach files: 
@@ -49,17 +49,17 @@
 			</div>
 		</div>
 
-		<% if signed_in? %>
-		<div class="span3">
+		<div class="span4">
 			<div id="comment_area">
 				<div id="comments">
 					<%= render "comments/comments" %>
 				</div>
+				<% if signed_in? %>
 				<div id="comment_form">
 					<%= render "comment_form" %>
 				</div>
+				<% end %>
 			</div>
 		</div>
-		<% end %>
 	</div>
 </div>

@@ -1,11 +1,17 @@
-<div style="border-top: 2px black solid;">
-  <%= comment.user.name %>
-  <%= simple_format(comment.content) %>
-  Posted <%= time_ago_in_words(comment.created_at) %> ago.
+<div class="a-comment" style="display: inline-block;">
+  <div class="preview avatar-in-comment" style="background: url('<%= comment.user.avatar.url(:thumb)%>')">
+  </div>
+  <div class="comment-content">
+    <%= link_to comment.user.name, user_path(comment.user), id: "owner" %>
+    <%= comment.content %>
+    <div style="font-size: 12px;">Posted <%= time_ago_in_words(comment.created_at) %> ago.
+      <% if current_user == comment.user %>
+      <%= link_to 'Delete', comment_path(comment),
+      confirm: 'Are you sure?', :method => :delete, 
+      remote: true %>
+      <% end %>
+    </div>
+  </div>
 
-  <% if current_user == comment.user %>
-    <%= form_for comment, html: { method: :delete }, remote: true do |f| %>
-    <%= f.submit "Delete comment", class: "btn btn-large btn-primary" %>
-    <% end %>
-  <% end %>
+  
 </div>

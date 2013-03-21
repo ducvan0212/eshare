@@ -4,6 +4,9 @@ class CommentsController < ApplicationController
   def create
     @exam_paper = ExamPaper.find(params[:comment][:exam_paper_id])
     current_user.comment!(@exam_paper, params[:comment][:content])
+    comments = @exam_paper.comments.paginate(page: 1, per_page: 3)
+    last_page = comments.total_pages
+    @comments = @exam_paper.comments.paginate(page: last_page, per_page: 3)
     respond_to do |format|
       format.js
     end 
