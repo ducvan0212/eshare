@@ -1,6 +1,6 @@
 <%= provide(:title, @user.name) %>
 
-<% if !@user.avatar.nil? %>
+<% if @user.avatar.nil? %>
   <%= image_tag "default_avatar.png" %>
 <% else %>
   <%= image_tag @user.avatar.url(:thumb) %>

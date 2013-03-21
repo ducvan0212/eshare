@@ -1,4 +1,4 @@
 <%= form_for current_user.appreciates.build(exam_paper_id: @exam_paper.id), remote: true do |f| %>
 <%= f.hidden_field :exam_paper_id %>
-<%= f.submit "Appreciate", class: "btn btn-large btn-primary" %>
+<%= f.submit "Good", class: "btn btn-large btn-primary" %>
 <% end %>

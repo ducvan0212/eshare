@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    binding.pry
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       sign_in @user

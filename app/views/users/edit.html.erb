@@ -20,8 +20,8 @@
         
         <%= f.label :avatar %>
         <div class="avatar-area">
-          <% if !@user.avatar.nil? %>
-            <div class="preview" style="background: url('/assets/default_avatar.png')">
+          <% if @user.avatar.nil? %>
+            <div class="preview" style="background: url('/assets/default_avatar.jpg')">
             </div>
           <% else %>
             <div class="preview" style="background: url('<%= @user.avatar.url(:thumb)%>')">

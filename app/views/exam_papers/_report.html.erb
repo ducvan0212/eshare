@@ -1,4 +1,4 @@
 <%= form_for current_user.reports.build(exam_paper_id: @exam_paper.id), remote: true do |f| %>
 <%= f.hidden_field :exam_paper_id %>
-<%= f.submit "Report", class: "btn btn-large btn-primary" %>
+<%= f.submit "Bad", class: "btn btn-large btn-primary" %>
 <% end %>

@@ -1,23 +1,25 @@
 <%= provide(:title, "Search results") %>
-<div class="container">
-	<div class="leftpane">
-  		<%= form_tag exam_papers_search_path, method: :get do %>
-    	<%= select_tag "lecturer", options_from_collection_for_select(Lecturer.all, "id", "name"), include_blank: true %>
-	    <%= select_tag "course", options_from_collection_for_select(Course.all, "id", "name"), include_blank: true %>
-    	<%= submit_tag "Search", class:"btn btn-large btn-primary" %>
-  	<% end %> </div>
+<div class="container container-fluid">
+  <div class="row">
+    <div class="span4">
+        <%= form_tag exam_papers_search_path, method: :get do %>
+        <%= select_tag "lecturer", options_from_collection_for_select(Lecturer.all, "id", "name"), include_blank: true %>
+        <%= select_tag "course", options_from_collection_for_select(Course.all, "id", "name"), include_blank: true %>
+        <%= submit_tag "Search", class:"btn btn-large btn-primary" %>
+      <% end %> </div>
 
-	<div class="content">
-  		<% if !@results.nil? %>
-	    	<% @results.each do |r| %>
-	      	<%= r.lecturer.name %> |
-	      	<%= r.course.name %> |
-	      	<%= r.exam_date %> |
-	      	<%= link_to "Browse", exam_paper_path(r) %></br>
-    	<% end %>
-    	<%= will_paginate @results, class: "pagination pagination-centered" %>
-  		<% else %>
-    		<p>No exam paper found.</p>
-  		<% end %>
-  	</div>
+    <div class="span8">
+      <% if !@results.empty? %>
+        <% @results.each do |r| %>
+          <%= r.lecturer.name %> |
+          <%= r.course.name %> |
+          <%= r.exam_date %> |
+          <%= link_to "Browse", exam_paper_path(r) %></br>
+        <% end %>
+        <%= will_paginate @results, class: "pagination pagination-centered" %>
+      <% else %>
+        <p>No exam paper found.</p>
+      <% end %>
+    </div>
+  </div>
 </div>

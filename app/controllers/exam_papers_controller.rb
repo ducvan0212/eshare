@@ -36,6 +36,7 @@ class ExamPapersController < ApplicationController
   end
 
   def destroy
+    binding.pry
     ExamPaper.find(params[:id]).destroy
     redirect_to exam_papers_path
   end
@@ -48,7 +49,10 @@ class ExamPapersController < ApplicationController
     if !params[:lecturer].nil? && !params[:course].nil?
       lecturer = params[:lecturer].empty? ? -1 : params[:lecturer].to_i
       course = params[:course].empty? ? -1 : params[:course].to_i
-      @results = ExamPaper.search(lecturer, course).paginate(:page => params[:page], :per_page => 10)
+      @results = []
+      if lecturer <= Lecturer.last.id && course <= Course.last.id
+        @results = ExamPaper.search(lecturer, course).paginate(:page => params[:page], :per_page => 20)
+      end
     end
   end
 
