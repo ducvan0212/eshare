@@ -2,7 +2,7 @@
   <% @comments.each do |c| %>
     <%= render partial: "comments/comment", locals: {comment: c} %>
   <% end %>
-  <%= will_paginate @comments %>
+  <%= will_paginate @comments, class: "pagination", :previous_label => '<<', :next_label => '>>', :inner_window => '1', :outer_window => '0' %>
 <% end %>
 
 <script type="text/javascript">

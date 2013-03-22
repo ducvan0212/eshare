@@ -1,1 +1,4 @@
-$('#comments').html('<%= escape_javascript(render("comments")) %>');
+$('#comments').html('<%= escape_javascript(render("comments/comments")) %>');
+$.each($(".pagination a"), function() {
+  this.href = this.href.replace(/[a-z\d\:\/]comments\/\d*/g, "/exam_papers/<%=@exam_paper.id%>");
+});

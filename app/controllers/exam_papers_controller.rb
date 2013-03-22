@@ -33,7 +33,7 @@ class ExamPapersController < ApplicationController
 
   def show
     @exam_paper = ExamPaper.find(params[:id])
-    @comments = @exam_paper.comments.paginate(page: params[:page], per_page: 3)
+    @comments = @exam_paper.comments.paginate(page: params[:page], per_page: 8)
   end
 
   def destroy
@@ -46,10 +46,10 @@ class ExamPapersController < ApplicationController
   end
 
   def search
+    @results = []
     if !params[:lecturer].nil? && !params[:course].nil?
       lecturer = params[:lecturer].empty? ? -1 : params[:lecturer].to_i
       course = params[:course].empty? ? -1 : params[:course].to_i
-      @results = []
       if lecturer <= Lecturer.last.id && course <= Course.last.id
         @results = ExamPaper.search(lecturer, course).paginate(:page => params[:page], :per_page => 20)
       end
