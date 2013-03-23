@@ -1,23 +1,42 @@
 <%= provide(:title, @user.name) %>
 
-<% if @user.avatar.nil? %>
-  <%= image_tag "default_avatar.png" %>
-<% else %>
-  <%= image_tag @user.avatar.url(:thumb) %>
-<% end %>
-
-<%= @user.name %>
-<% if current_user == @user %>
-  <%= link_to "Edit account infomation", edit_user_path(@user) %>
-<% end %>
-
-<div>
-  <%= pluralize(@exam_papers.count, "item") %><br>
-  <% if !@exam_papers.nil? %>
-    <% @exam_papers.each do |e| %>
-      <%= e.course.name %> | <%= e.lecturer.name %> | <%= link_to "Go to", exam_paper_path(e) %>
-      <br>
-    <% end %>
-  <% end %>
+<div class="container1100 container-fluid">
+	<div class="row-fluid">
+		<div class="span3">
+			<% if @user.avatar.nil? %>
+			  <%= image_tag "default_avatar.png" %>
+			<% else %>
+			  <%= image_tag @user.avatar.url(:thumb) %>
+			<% end %>
+			
+			<%= @user.name %>
+			<% if current_user == @user %>
+			  <%= link_to "Edit account infomation", edit_user_path(@user) %>
+			<% end %>
+		</div>
+		
+		<div class="span8">
+			<%= pluralize(@exam_papers.count, "item") %> 
+			<br />
+			<% if !@exam_papers.nil? %>
+			<table class="table table-hover">
+				<thead>
+					<th>Course</th>
+					<th>Name</th>
+				</thead>
+				
+				<tbody>
+					<% @exam_papers.each do |e| %>
+					<tr>
+						<td><%= e.course.name %></td>
+						<td><%= e.lecturer.name %></td>
+						<td><%= link_to "Go to", exam_paper_path(e) %></td>
+					</tr>
+			
+			<% end %>
+			<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
-
