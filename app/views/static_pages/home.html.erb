@@ -32,10 +32,19 @@
     </div>
   
   <% else %>
-    <%= form_tag exam_papers_search_path, method: :get do %>
-      <%= select_tag "lecturer", options_from_collection_for_select(Lecturer.all, "id", "name"), include_blank: true %>
-      <%= select_tag "course", options_from_collection_for_select(Course.all, "id", "name"), include_blank: true %>
-      <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
-    <% end %>
-  <% end %>
+  <div class="container container-fluid">
+  	<div class="row">
+    	<div class="span4">
+		    <%= form_tag exam_papers_search_path, method: :get do %>
+		      <%= select_tag "lecturer", options_from_collection_for_select(Lecturer.all, "id", "name"), include_blank: true %>
+		      <%= select_tag "course", options_from_collection_for_select(Course.all, "id", "name"), include_blank: true %>
+		      <%= radio_button("sort", "order", "time") %> Order by time<br>
+			  <%= radio_button("sort", "order", "good") %> Order by user rating<br>
+        		<br />
+		      <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
+		    <% end %>
+		  <% end %>
+		</div>
+	</div>
+  </div>
 </div>

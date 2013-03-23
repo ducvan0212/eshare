@@ -5,8 +5,8 @@
         <%= form_tag exam_papers_search_path, method: :get do %>
         <%= select_tag "lecturer", options_from_collection_for_select(Lecturer.all, "id", "name", params[:lecturer] ), include_blank: true %>
         <%= select_tag "course", options_from_collection_for_select(Course.all, "id", "name", params[:course]), include_blank: true %>
-        Order by time: <%= radio_button("sort", "order", "time") %><br>
-        Order by user rating: <%= radio_button("sort", "order", "good") %><br>
+        <%= radio_button("sort", "order", "time") %> Order by time<br>
+		<%= radio_button("sort", "order", "good") %> Order by user rating<br>
         <br />
         <%= submit_tag "Search", class:"btn btn-large btn-primary" %>
       <% end %> </div>
