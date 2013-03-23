@@ -23,7 +23,7 @@ class ExamPaper < ActiveRecord::Base
     elsif course != -1
       where("course_id = ?", course)
     else
-      ExamPaper.all
+      []
     end    
   end
 end

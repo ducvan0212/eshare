@@ -3,8 +3,10 @@
   <div class="row">
     <div class="span4">
         <%= form_tag exam_papers_search_path, method: :get do %>
-        <%= select_tag "lecturer", options_from_collection_for_select(Lecturer.all, "id", "name"), include_blank: true %>
-        <%= select_tag "course", options_from_collection_for_select(Course.all, "id", "name"), include_blank: true %>
+        <%= select_tag "lecturer", options_from_collection_for_select(Lecturer.all, "id", "name", params[:lecturer] ), include_blank: true %>
+        <%= select_tag "course", options_from_collection_for_select(Course.all, "id", "name", params[:course]), include_blank: true %>
+        Order by time: <%= radio_button("sort", "order", "time") %><br>
+        Order by user rating: <%= radio_button("sort", "order", "good") %><br>
         <%= submit_tag "Search", class:"btn btn-large btn-primary" %>
       <% end %> </div>
 
@@ -14,6 +16,8 @@
           <%= r.lecturer.name %> |
           <%= r.course.name %> |
           <%= r.exam_date %> |
+          <%= r.reports.count %> |
+          <%= r.appreciates.count %> |
           <%= link_to "Browse", exam_paper_path(r) %></br>
         <% end %>
         <%= will_paginate @results, class: "pagination pagination-centered" %>

@@ -42,16 +42,23 @@ class ExamPapersController < ApplicationController
   end
 
   def index
-    @exam_papers = ExamPaper.all.paginate(page: params[:page], per_page: 10)  
+    @exam_papers = (ExamPaper.all.sort_by!{ |a| a.reports.count}.reverse! ).paginate(page: params[:page], per_page: 10)
   end
 
   def search
+    # binding.pry
     @results = []
     if !params[:lecturer].nil? && !params[:course].nil?
       lecturer = params[:lecturer].empty? ? -1 : params[:lecturer].to_i
       course = params[:course].empty? ? -1 : params[:course].to_i
       if lecturer <= Lecturer.last.id && course <= Course.last.id
-        @results = ExamPaper.search(lecturer, course).paginate(:page => params[:page], :per_page => 20)
+        if !params[:sort].nil? && params[:sort][:order] == "good"
+          @results = (ExamPaper.search(lecturer, course).sort_by!{ |a| a.appreciates.count}.reverse!).paginate(:page => params[:page], :per_page => 20)
+        elsif !params[:sort].nil? && params[:sort][:order] == "time"
+          @results = (ExamPaper.search(lecturer, course).sort_by!{ |a| a.exam_date}.reverse!).paginate(:page => params[:page], :per_page => 20)
+        else
+          @results = ExamPaper.search(lecturer, course).paginate(:page => params[:page], :per_page => 20)
+        end
       end
     end
   end
