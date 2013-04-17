@@ -29,11 +29,13 @@ namespace :db do
       date = "#{d}-#{m}-#{y}"
       3.times do |n|
         if !date.nil?
-          ep = user.exam_papers.build(lecturer_id: n+1, 
-                                    course_id: n+1, 
-                                    exam_date: date,
-                                    content: Faker::Lorem.paragraphs(paragraph_count = 10))
-          ep.save!
+          3.times do |m|
+            ep = user.exam_papers.build(lecturer_id: n+1, 
+                                      course_id: n+1, 
+                                      exam_date: date,
+                                      content: Faker::Lorem.paragraphs(paragraph_count = 10))
+            ep.save!
+          end
         end
       end
     end

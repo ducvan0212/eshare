@@ -2,45 +2,19 @@
 <div class="container container-fluid">
   <div class="row">
     <div class="span4">
-        <%= form_tag exam_papers_search_path, method: :get do %>
+        <%= form_tag exam_papers_search_path, method: :get, remote: true do %>
         <%= select_tag "lecturer", options_from_collection_for_select(Lecturer.all, "id", "name", params[:lecturer] ), include_blank: true %>
         <%= select_tag "course", options_from_collection_for_select(Course.all, "id", "name", params[:course]), include_blank: true %>
-        <%= radio_button("sort", "order", "time") %> Order by time<br>
-		<%= radio_button("sort", "order", "good") %> Order by user rating<br>
+        <div class="hide">
+          <%= radio_button("sort", "order", "time") %> Order by time<br>
+          <%= radio_button("sort", "order", "good") %> Order by user rating<br>
+        </div>
         <br />
-        <%= submit_tag "Search", class:"btn btn-large btn-primary" %>
+        <%= submit_tag "Search", class:"btn btn-large btn-primary", id:"search-submit" %>
       <% end %> </div>
 
-    <div class="span8">
-    	<% if !@results.empty? %>
-    	<table class="table table-hover">
-    		<thead>
-    			<th>Name</th>
-    			<th>Course</th>
-    			<th>Date</th>
-    			<th>Report</th>
-    			<th>Appreciates</th>
-    		</thead>
-    		
-    		<tbody>
-		      <% @results.each do |r| %>
-		        <tr>
-		          <td><%= r.lecturer.name %></td>
-		          <td><%= r.course.name %></td>
-		          <td><%= r.exam_date %></td>
-		          <td><%= r.reports.count %></td>
-		          <td><%= r.appreciates.count %></td>
-		          <td><%= link_to "Browse", exam_paper_path(r) %></td>
-		        <% end %>
-		        
-        		</tr>
-      			
-      		</tbody>
-      	</table>
-      	<%= will_paginate @results, class: "pagination pagination-centered" %>
-		<% else %>
-		<p>No exam paper found.</p>
-		<% end %>
+    <div class="span8" id="search-result">
+    	<%= render partial: "search_result" %>
     </div>
   </div>
 </div>

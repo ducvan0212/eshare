@@ -1,10 +1,13 @@
 <%= provide(:title, "New exam paper") %>
+       
+
 <div class="container1100 container-fluid">
-	<div class="row-fluid">
-		<div class="span3">		
-			<%= form_for @exam_paper, html: {multipart: true} do |f| %>
-			<%= render partial: 'shared/error_messages', locals: {obj: @exam_paper} %>
-			
+<div style="width: 500px; margin: 0 auto;">
+  <%= render partial: 'shared/error_messages', locals: {obj: @exam_paper} %>
+</div>
+  <div class="row-fluid">
+    <div class="span3">   
+      <%= form_for @exam_paper, html: {multipart: true} do |f| %>
 			<%= f.label :course_id %>
 			<%= f.select "course_id", Hash[Course.all.collect {|a| [a.name, a.id]}]%>
 			
