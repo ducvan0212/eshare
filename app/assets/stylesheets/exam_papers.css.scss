@@ -68,3 +68,10 @@ select {
     }
   }
 }
+
+.usable {
+  &:hover {
+    background: #dddddd;
+    cursor: pointer;
+  }
+}
