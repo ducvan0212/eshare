@@ -1,0 +1,78 @@
+<%= provide(:title, "Exam paper") %>
+<div class="container1100 container-fluid">
+	<div class="row-fluid">
+		<div class="span8">
+			<div class="ex-p-content">
+				<div class="ex-p-content-top">
+					<%= simple_format h(@exam_paper.content) %>
+				</div>
+				Attached files: 
+				<% @exam_paper.parts.each do |p| %>
+				<%= image_tag p.exam_part.url(:thumb) %>
+				<% end %>
+				<br \>
+			</div>
+			<br /><br />
+			
+			<div class="ex-p-info">
+				<div class="ex-p-info-left">
+					
+					Course: <%= @exam_paper.course.name %><br>
+					Lecturer: <%= @exam_paper.lecturer.name %><br>
+					Date: <%= @exam_paper.exam_date.month.to_s + "-" + @exam_paper.exam_date.year.to_s %><br>
+					
+					
+				</div>
+
+				<div class="ex-p-info-right">
+					Uploaded by <%= link_to @exam_paper.user.name, user_path(@exam_paper.user) %><br>
+					<% if current_user == @exam_paper.user %>
+					<%= link_to "Edit this exam paper", edit_exam_paper_path %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+		<div class="span4">
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="appreciate">
+						<div id="appreciate"><%= @exam_paper.appreciates.count %></div>
+						<div id="appreciate_form">
+							<% if signed_in? && !current_user.appreciated?(@exam_paper) %>
+							<%= render "appreciate" %>
+							<% else %>
+							<%= render "remove_appreciate" %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			
+			
+				<div class="span4">
+					<div class="report">
+						<div id="report"><%= @exam_paper.reports.count %></div>
+						<div id="report_form">
+							<% if signed_in? && !current_user.reported?(@exam_paper) %>
+							<%= render "report" %>
+							<% else %>
+							<%= render "remove_report" %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="comment_area">
+				<div id="comments">
+					<%= render "comments/comments" %>
+				</div>
+				<% if signed_in? %>
+				<div id="comment_form">
+					<%= render "comment_form" %>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
