@@ -2,6 +2,7 @@
        
 
 <div class="container1100 container-fluid">
+	<h1 style="text-align: center">New exam paper</h1>
 <div style="width: 500px; margin: 0 auto;">
   <%= render partial: 'shared/error_messages', locals: {obj: @exam_paper} %>
 </div>
@@ -30,12 +31,10 @@
 				<%= render "parts_fields", :f => builder %>
 				<% end %>
         	</div>
-        	
-        	<div id="add-more-file" class="btn btn-large btn-primary">Add more</div> 
-          <div style="margin-top:20px;">
-            <%= f.submit "Upload", class: "btn btn-large btn-primary span5 offset3" %>
-   				</div>
-          <% end %>
+        	<div id="add-more-file" class="btn btn-small">Add more</div>
+        	<br /><br />
+       			<%= f.submit "Upload", class: "btn btn-large btn-primary width100" %>
+   				<% end %>
 	    </div>
   </div>
 </div>
