@@ -2,8 +2,8 @@
   <p>
     <% if !f.object.id.nil? %>
       <%= image_tag f.object.exam_part.url(:thumb) %>
-    <% else %>
     <% end %>
+    
     <%= f.file_field :exam_part, :accept => 'image/png,image/jpeg' %><br />
     <%= link_to_remove_field("remove", f) %>
     </p>

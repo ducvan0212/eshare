@@ -1,48 +1,46 @@
 <%= provide(:title, "New exam paper") %>
-       
+
 
 <div class="container1100 container-fluid">
 	<h1 style="text-align: center">New exam paper</h1>
-<div style="width: 500px; margin: 0 auto;">
-  <%= render partial: 'shared/error_messages', locals: {obj: @exam_paper} %>
-</div>
+  <div style="width: 500px; margin: 0 auto;">
+    <%= render partial: 'shared/error_messages', locals: {obj: @exam_paper} %>
+  </div>
   <div class="row-fluid">
-    <div class="span3">   
-      <%= form_for @exam_paper, html: {multipart: true} do |f| %>
-			<%= f.label :course_id %>
-			<%= f.select "course_id", Hash[Course.all.collect {|a| [a.name, a.id]}]%>
-			
-			<%= f.label :lecturer_id %>
-			<%= f.select "lecturer_id", Hash[Lecturer.all.collect {|a| [a.name, a.id]}]%>
-			
-			<%= f.label :exam_date, "Exam date" %>
-			<input type="date" name="exam_paper[exam_date]" style="width: auto;"  value="<%= @exam_paper.exam_date %>"> 
-			<p class="date-recommendation">The day is not necessary so you can just choose the right month.<p/>
-				
-			
-		</div>
-		
-		<div class="span9">
-			<%= f.label :content, "Content" %>
-			<%= f.text_area :content %>
-			        
-			<div id="upload-file-area">
-				<%= f.fields_for :parts, html: {multipart: true} do |builder| %>
-				<%= render "parts_fields", :f => builder %>
-				<% end %>
-        	</div>
-        	<div id="add-more-file" class="btn btn-small">Add more</div>
-        	<br /><br />
-       			<%= f.submit "Upload", class: "btn btn-large btn-primary width100" %>
-   				<% end %>
-	    </div>
+    <%= form_for @exam_paper, html: {multipart: true} do |f| %>
+      <div class="span3">   
+      <%= f.label :course_id %>
+      <%= f.select "course_id", Hash[Course.all.collect {|a| [a.name, a.id]}]%>
+
+      <%= f.label :lecturer_id %>
+      <%= f.select "lecturer_id", Hash[Lecturer.all.collect {|a| [a.name, a.id]}]%>
+
+      <%= f.label :exam_date, "Exam date" %>
+      <input type="date" name="exam_paper[exam_date]" style="width: auto;"  value="<%= @exam_paper.exam_date %>"> 
+      <p class="date-recommendation">The day is not necessary so you can just choose the right month.<p/>
+      </div>
+
+      <div class="span9">
+       <%= f.label :content, "Content" %>
+       <%= f.text_area :content %>
+
+       <div id="upload-file-area">
+        <%= f.fields_for :parts, html: {multipart: true} do |builder| %>
+        <%= render "parts_fields", :f => builder %>
+        <% end %>
+      </div>
+      <div id="add-more-file" class="btn btn-small">Add more</div>
+      <br /><br />
+      <%= f.submit "Upload", class: "btn btn-large btn-primary width100" %>
+      </div>
+    <% end %>
   </div>
 </div>
 
 <script type="text/javascript">
-  $('#add-more-file').click(function () {
-    var num_fields = $('.fields').length;
-    console.log(num_fields);
-    $('#upload-file-area').append('<div class="fields"><p><input id="exam_paper_parts_attributes_'+num_fields+'_exam_part" name="exam_paper[parts_attributes]['+num_fields+'][exam_part]" type="file"><br><input id="exam_paper_parts_attributes_'+num_fields+'__destroy" name="exam_paper[parts_attributes]['+num_fields+'][_destroy]" type="hidden" value="false"><a href="#" onclick="remove_field(this); return false;">remove</a></p></div>');
-  });
+$('#add-more-file').click(function () {
+  var num_fields = $('.fields').length;
+  console.log(num_fields);
+  $('#upload-file-area').append('<div class="fields"><p><input id="exam_paper_parts_attributes_'+num_fields+'_exam_part" name="exam_paper[parts_attributes]['+num_fields+'][exam_part]" type="file"><br><input id="exam_paper_parts_attributes_'+num_fields+'__destroy" name="exam_paper[parts_attributes]['+num_fields+'][_destroy]" type="hidden" value="false"><a href="#" onclick="remove_field(this); return false;">remove</a></p></div>');
+});
 </script>
