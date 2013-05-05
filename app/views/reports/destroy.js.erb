@@ -1,2 +1,2 @@
 $('#report_form').html('<%= escape_javascript(render("exam_papers/report")) %>');
-$('#report').html('<%= @exam_paper.reports.count %>');
+$('#report').html('<%= image_tag "vote_bad.png", class: "dislike" %> <%= @exam_paper.reports.count %>');

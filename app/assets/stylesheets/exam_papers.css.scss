@@ -40,21 +40,19 @@ select {
       padding: 10px;
       width: 30%;
       float: right;
-      .appreciate {
-        width: 50%;
-        display: inline-block;
-        float: left;
-      }
-      .report {
-        width: 50%;
-        display: inline-block;
-        float: right;
-      }
+      
     }
+    
+    .user-avatar {
+      padding: 10px;
+      float: left;
+    }
+    
     .ex-p-info-left {
       padding: 10px;
-      width: 50%;
+      width: 40%;
       float: left;
+      
     }
   }
 }
@@ -87,5 +85,36 @@ select {
   &:hover {
     background: #dddddd;
     cursor: pointer;
+  }
+}
+
+.like{
+  padding-right: 3px;
+  margin-bottom: 10px;
+}
+
+.dislike{
+  padding-right: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.appreciate {
+  width: 50%;
+  display: inline-block;
+  float: left;
+  #appreciate {
+    width: 65px;
+    text-align: center;
+  }
+}
+
+.report {
+  width: 50%;
+  display: inline-block;
+  float: right;
+  #report {
+    width: 65px;
+    text-align: center;
   }
 }
