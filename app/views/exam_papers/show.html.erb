@@ -4,7 +4,7 @@
 		<div class="span8">
 			<div class="ex-p-info">
 				<div class="user-avatar">
-					<%= link_to(image_tag @exam_paper.user.avatar.url(:thumb)) %>
+					<%= link_to(image_tag(@exam_paper.user.avatar.url(:smallest)), user_path(@exam_paper.user)) %>
 				</div>
 				
 				<div class="ex-p-info-left">
@@ -32,9 +32,11 @@
 				</div>
 				<% if !@exam_paper.parts.empty? %>
 					<div class="attach-file">
-						Attached images: 
+						<div>Attached images:</div>
 						<% @exam_paper.parts.each do |p| %>
-						<%= link_to(image_tag(p.exam_part.url(:thumb)), p.exam_part.url, target: "_blank") %>
+							<div class="attached-images">
+								<%= link_to(image_tag(p.exam_part.url(:medium)), p.exam_part.url, target: "_blank") %>
+							</div>
 						<% end %>
 					</div>
 				<% end %>

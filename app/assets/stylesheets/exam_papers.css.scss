@@ -23,7 +23,8 @@ select {
   }
   .attach-file {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    display: inline-block;
   }
 }
 
@@ -38,7 +39,7 @@ select {
     border-radius: 5px;
     .ex-p-info-right {
       padding: 10px;
-      width: 30%;
+      width: 50%;
       float: right;
       
     }
@@ -50,7 +51,7 @@ select {
     
     .ex-p-info-left {
       padding: 10px;
-      width: 40%;
+      width: 30%;
       float: left;
       
     }
@@ -116,5 +117,18 @@ select {
   #report {
     width: 65px;
     text-align: center;
+  }
+}
+
+.attached-images {
+  padding: 5px;
+  margin: 5px;
+  display: inline-block;
+  float: left;
+  text-align: center;
+  width: 325px;
+  &:hover {
+    border: 3px #0088cc solid;
+    border-radius: 5px;
   }
 }

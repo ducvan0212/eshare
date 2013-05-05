@@ -40,6 +40,6 @@
 <script type="text/javascript">
 $('#add-more-file').click(function () {
   var num_fields = $('.fields').length;
-  $('#upload-file-area').append('<div class="fields"><p><input id="exam_paper_parts_attributes_'+num_fields+'_exam_part" name="exam_paper[parts_attributes]['+num_fields+'][exam_part]" type="file"><br><input id="exam_paper_parts_attributes_'+num_fields+'__destroy" name="exam_paper[parts_attributes]['+num_fields+'][_destroy]" type="hidden" value="false"><a href="#" onclick="remove_field(this); return false;">remove</a></p></div>');
+  $('#upload-file-area').append('<div class="fields"><p><input accept="image/png,image/jpeg" id="exam_paper_parts_attributes_'+num_fields+'_exam_part" name="exam_paper[parts_attributes]['+num_fields+'][exam_part]" type="file"><br><input id="exam_paper_parts_attributes_'+num_fields+'__destroy" name="exam_paper[parts_attributes]['+num_fields+'][_destroy]" type="hidden" value="false"><a href="#" onclick="remove_field(this); return false;">remove</a></p></div>');
 });
 </script>
