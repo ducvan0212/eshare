@@ -27,6 +27,7 @@ namespace :db do
       m = Random.new.rand(13)
       y = Random.new.rand(2000..2014)
       date = "#{d}-#{m}-#{y}"
+      print date
       3.times do |n|
         if !date.nil?
           3.times do |m|

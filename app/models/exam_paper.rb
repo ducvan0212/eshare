@@ -8,6 +8,7 @@ class ExamPaper < ActiveRecord::Base
   has_many :appreciates, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   accepts_nested_attributes_for :parts, :reject_if => lambda { |a| a[:exam_part].blank? }, :allow_destroy => true
 
   validates :exam_date, presence: true

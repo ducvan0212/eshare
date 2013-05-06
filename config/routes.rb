@@ -18,6 +18,7 @@ Eshare::Application.routes.draw do
   resources :appreciates, only: [:create, :destroy]
   resources :reports, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
+  resources :bookmarks, only: [:create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

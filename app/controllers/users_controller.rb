@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @exam_papers = @user.exam_papers
+    @bookmarks = @user.bookmarks
   end
 
   def edit

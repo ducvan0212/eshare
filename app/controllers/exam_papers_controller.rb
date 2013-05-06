@@ -33,7 +33,7 @@ class ExamPapersController < ApplicationController
 
   def show
     @exam_paper = ExamPaper.find(params[:id])
-    @comments = @exam_paper.comments.paginate(page: params[:page], per_page: 5)
+    @comments = @exam_paper.comments.paginate(page: params[:page], per_page: 8)
   end
 
   def destroy

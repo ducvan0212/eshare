@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :appreciates, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -53,6 +54,19 @@ class User < ActiveRecord::Base
   def rm_comment!(exam_paper, comment_id)
     comments.where("exam_paper_id = ?", exam_paper.id).select{|c| c.id == comment_id.to_i}.first.destroy
   end
+
+  def bookmark!(exam_paper)
+    bookmarks.create!(exam_paper_id: exam_paper.id)
+  end
+
+  def bookmarked?(exam_paper)
+    bookmarks.find_by_exam_paper_id(exam_paper.id)
+  end
+
+  def rm_bookmark!(exam_paper)
+    bookmarks.find_by_exam_paper_id(exam_paper.id).destroy
+  end
+
   private
 
   def create_remember_token

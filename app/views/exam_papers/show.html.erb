@@ -1,4 +1,43 @@
 <%= provide(:title, "Exam paper") %>
+
+<div class="user-button">
+	<div class="bookmark">
+		<div id="bookmark_form">
+			<% if signed_in? && !current_user.bookmarked?(@exam_paper) %>
+			<%= render "bookmark" %>
+			<% else %>
+			<%= render "remove_bookmark" %>
+			<% end %>
+		</div>
+	</div>
+	<div class="appreciate">
+		<div id="appreciate">
+			<%= image_tag "vote_good.png", class: "like" %>
+		</div>
+		<div id="appreciate_form">
+			<% if signed_in? && !current_user.appreciated?(@exam_paper) %>
+			<%= render "appreciate" %>
+			<% else %>
+			<%= render "remove_appreciate" %>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="report">
+		<div id="report">
+			<%= image_tag "vote_bad.png", class: "dislike" %>
+		</div>
+
+		<div id="report_form">
+			<% if signed_in? && !current_user.reported?(@exam_paper) %>
+			<%= render "report" %>
+			<% else %>
+			<%= render "remove_report" %>
+			<% end %>
+		</div>
+	</div>		
+</div>
+
 <div class="container1100 container-fluid">
 	<div class="row-fluid">
 		<div class="span8">
@@ -20,8 +59,8 @@
 						Course: <%= @exam_paper.course.name %><br>
 						Lecturer: <%= @exam_paper.lecturer.name %><br>
 						Date: <%= @exam_paper.exam_date.month.to_s + "-" + @exam_paper.exam_date.year.to_s %><br>
-						
-						
+						<%= image_tag "vote_good.png", class: "like" %> <span id="appreciate-count"><%= @exam_paper.appreciates.count %></span><br>
+						<%= image_tag "vote_bad.png", class: "dislike" %> <span id="report-count"><%= @exam_paper.reports.count %></span><br>
 					</div>
 				</div>
 			</div>
@@ -43,40 +82,7 @@
 			</div>
 		</div>
 
-		<div class="span4">	
-			<div class="span2">
-				<div class="appreciate">
-					<div id="appreciate">
-						<%= image_tag "vote_good.png", class: "like" %>
-						<%= @exam_paper.appreciates.count %>  
-					</div>
-					<div id="appreciate_form">
-						<% if signed_in? && !current_user.appreciated?(@exam_paper) %>
-						<%= render "appreciate" %>
-						<% else %>
-						<%= render "remove_appreciate" %>
-						<% end %>
-					</div>
-				</div>
-			</div>
-
-			<div class="span2">
-				<div class="report">
-					<div id="report">
-						<%= image_tag "vote_bad.png", class: "dislike" %>
-						<%= @exam_paper.reports.count %>
-					</div>
-					
-					<div id="report_form">
-						<% if signed_in? && !current_user.reported?(@exam_paper) %>
-						<%= render "report" %>
-						<% else %>
-						<%= render "remove_report" %>
-						<% end %>
-					</div>
-				</div>
-			</div>		
-				
+		<div class="span4">				
 			<div id="comment_area">
 				<div id="comments">
 					<%= render "comments/comments" %>

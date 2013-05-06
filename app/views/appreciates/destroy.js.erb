@@ -1,2 +1,2 @@
 $('#appreciate_form').html('<%= escape_javascript(render("exam_papers/appreciate")) %>');
-$('#appreciate').html('<%= image_tag "vote_good.png", class: "like" %> <%= @exam_paper.appreciates.count %>');
+$('#appreciate-count').html('<%= @exam_paper.appreciates.count %>');
