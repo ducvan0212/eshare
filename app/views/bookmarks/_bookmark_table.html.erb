@@ -1,0 +1,25 @@
+<table class="table table-hover">
+  <thead>
+    <th>Course</th>
+    <th>Name</th>
+    <th></th>
+  </thead>
+
+  <tbody>
+    <% @bookmarks.each do |b| %>
+    <tr id="<%= b.exam_paper.id %>">
+      <td><%= b.exam_paper.course.name %></td>
+      <td><%= b.exam_paper.lecturer.name %></td>
+      <td >
+        <%= link_to "Go to", exam_paper_path(b.exam_paper) %>
+        <% if current_user == @user %>
+        <%= link_to 'Delete', bookmark_path(b),
+        confirm: 'Are you sure?', :method => :delete, 
+        remote: true %>
+        <% end %>
+      </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>

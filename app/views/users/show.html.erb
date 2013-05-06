@@ -5,12 +5,12 @@
 		<div class="span3">
 			<div class="span4">
 				<% if @user.avatar.nil? %>
-				  <%= image_tag "default_avatar.png" %>
+				<%= image_tag "default_avatar.png" %>
 				<% else %>
-				  <%= image_tag @user.avatar.url(:thumb) %>
+				<%= image_tag @user.avatar.url(:thumb) %>
 				<% end %>
 			</div>
-				
+
 			<div class="span5">
 				<%= @user.name %><br>
 				<% if current_user == @user %>
@@ -36,9 +36,9 @@
 						<td><%= e.lecturer.name %></td>
 						<td><%= link_to "Go to", exam_paper_path(e) %></td>
 					</tr>
-			
-			<% end %>
-			<% end %>
+
+					<% end %>
+					<% end %>
 				</tbody>
 			</table>
 		</div>
@@ -46,25 +46,10 @@
 		<div class="span4">
 			<h2>Bookmark</h2>
 			<% if !@bookmarks.empty? %>
-			<table class="table table-hover">
-				<thead>
-					<th>Course</th>
-					<th>Name</th>
-					<th></th>
-				</thead>
-				
-				<tbody>
-					<% @bookmarks.each do |b| %>
-					<tr id="<%= b.exam_paper.id %>">
-						<td><%= b.exam_paper.course.name %></td>
-						<td><%= b.exam_paper.lecturer.name %></td>
-						<td ><%= link_to "Go to", exam_paper_path(b.exam_paper) %></td>
-					</tr>
-			
+				<div id="bookmark-table">
+					<%= render "bookmarks/bookmark_table" %>
+				</div>
 			<% end %>
-			<% end %>
-				</tbody>
-			</table>
 		</div>
 	</div>
 </div>
