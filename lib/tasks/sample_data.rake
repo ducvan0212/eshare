@@ -9,7 +9,7 @@ namespace :db do
     admin.avatar = File.open(Rails.root.join('app','assets','images','default_avatar.jpg'))
     admin.toggle!(:admin)
     
-    10.times do |n|
+    5.times do |n|
       name  = Faker::Name.name + " " + "#{n+1}"
       email = "#{n+1}@mail.com"
       password  = "123456"

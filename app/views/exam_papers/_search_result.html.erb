@@ -16,7 +16,7 @@
         <td><%= r.exam_date %></td>
         <td><%= r.reports.count %></td>
         <td><%= r.appreciates.count %></td>
-        <td><%= link_to "Browse", exam_paper_path(r) %></td>
+        <td><a href="<%=exam_paper_path(r)%>" class="btn"><i class="icon-forward"></i></a></td>
       </tr>
       <% end %>
     </tbody>

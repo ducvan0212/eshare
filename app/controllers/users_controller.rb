@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @exam_papers = @user.exam_papers
-    @bookmarks = @user.bookmarks
+    @bookmarks = @user.bookmarks.sort { |a, b| a.exam_paper.course.id <=> b.exam_paper.course.id }
   end
 
   def edit

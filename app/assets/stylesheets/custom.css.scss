@@ -17,3 +17,17 @@ input, textarea, select, .uneditable-input {
   margin-bottom: 15px;
   @include box_sizing;
 }
+
+.nav {
+  li {
+    &:hover {
+      i {
+        opacity: 1 !important;
+      }
+    }
+  }
+}
+
+.btn.disabled {
+  opacity: 0.2;
+}

@@ -1,3 +1,5 @@
 <%= form_for current_user.reports.find_by_exam_paper_id(@exam_paper.id), html: { method: :delete }, remote: true do |f| %>
-<%= f.submit "Bad", class: "btn btn-large" %>
+<button type="submit" class="btn btn-primary disabled">
+  <i class="icon-thumbs-down icon-white"></i>
+</button>
 <% end %>

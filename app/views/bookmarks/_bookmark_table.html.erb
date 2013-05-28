@@ -2,6 +2,7 @@
   <thead>
     <th>Course</th>
     <th>Name</th>
+    <th>Date</th>
     <th></th>
   </thead>
 
@@ -10,12 +11,11 @@
     <tr id="<%= b.exam_paper.id %>">
       <td><%= b.exam_paper.course.name %></td>
       <td><%= b.exam_paper.lecturer.name %></td>
+      <td><%= b.exam_paper.exam_date %></td>
       <td >
-        <%= link_to "Go to", exam_paper_path(b.exam_paper) %>
+        <a href="<%=exam_paper_path(b.exam_paper)%>" class="btn"><i class="icon-forward"></i></a>
         <% if current_user == @user %>
-        <%= link_to 'Delete', bookmark_path(b),
-        confirm: 'Are you sure?', :method => :delete, 
-        remote: true %>
+        <a href="<%= bookmark_path(b)%>" data-confirm="Are you sure?" data-method="delete" data-remote="true" rel="nofollow" class="btn"><i class="icon-trash"></i></a>
         <% end %>
       </td>
 

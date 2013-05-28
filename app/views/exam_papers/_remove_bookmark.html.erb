@@ -1,3 +1,5 @@
 <%= form_for current_user.bookmarks.find_by_exam_paper_id(@exam_paper.id), html: { method: :delete }, remote: true do |f| %>
-<%= f.submit "Bookmark", class: "btn btn-large" %>
+<button type="submit" class="btn btn-primary disabled">
+  <i class="icon-bookmark icon-white"></i>
+</button>
 <% end %>
