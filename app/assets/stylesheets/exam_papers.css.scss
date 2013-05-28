@@ -22,9 +22,13 @@ select {
     }
   }
   .attach-file {
+    width: 100%;
     margin-top: 20px;
     margin-bottom: 40px;
     display: inline-block;
+    text-align: center;
+    background: #EDEFF4;
+    border-radius: 5px;
   }
 }
 
@@ -113,11 +117,12 @@ select {
   padding: 5px;
   margin: 5px;
   display: inline-block;
-  float: left;
   text-align: center;
-  width: 325px;
+  width: 90%;
+  border: 5px #EDEFF4 solid;
+  border-radius: 5px;
   &:hover {
-    border: 3px #0088cc solid;
+    border: 5px #0088cc solid;
     border-radius: 5px;
   }
 }

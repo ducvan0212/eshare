@@ -1,7 +1,7 @@
 <%= provide(:title, "Search results") %>
 <div class="container container-fluid">
   <div class="row">
-    <div class="span4">
+    <div class="span3" style="margin-top: 10px;">
         <%= form_tag exam_papers_search_path, method: :get, remote: true do %>
         <%= select_tag "lecturer", options_from_collection_for_select(Lecturer.all, "id", "name", params[:lecturer] ), include_blank: true %>
         <%= select_tag "course", options_from_collection_for_select(Course.all, "id", "name", params[:course]), include_blank: true %>
@@ -13,7 +13,7 @@
         <%= submit_tag "Search", class:"btn btn-large btn-primary", id:"search-submit" %>
       <% end %> </div>
 
-    <div class="span8" id="search-result">
+    <div class="span9" id="search-result">
     	<%= render partial: "search_result" %>
     </div>
   </div>

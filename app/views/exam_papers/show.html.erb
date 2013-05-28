@@ -64,10 +64,10 @@
 				</div>
 				<% if !@exam_paper.parts.empty? %>
 					<div class="attach-file">
-						<div>Attached images:</div>
+						<div style="font-size: 200%; margin-bottom: 20px; margin-top: 10px; font-weight: bold;">Attached images:</div>
 						<% @exam_paper.parts.each do |p| %>
 							<div class="attached-images">
-								<%= link_to(image_tag(p.exam_part.url(:medium)), p.exam_part.url, target: "_blank") %>
+								<%= link_to(image_tag(p.exam_part.url), p.exam_part.url, target: "_blank") %>
 							</div>
 						<% end %>
 					</div>
