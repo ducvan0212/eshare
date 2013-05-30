@@ -129,16 +129,14 @@ select {
 
 .user-button {
   position: fixed;
-  padding-left: 5px;
-  min-height: 200px;
+  padding-left: 10px;
+  min-height: 150px;
   min-width: 100px;
-  .bookmark, .appreciate, .report {
-    display: none;
-  }
+  margin-left: -45px;
+  transition: margin-left 1.5s;
+  -webkit-transition: margin-left 1.5s;
 
   &:hover {
-    .bookmark, .appreciate, .report {
-    display: block;
-    }
+    margin-left: 0px;
   }
 }
